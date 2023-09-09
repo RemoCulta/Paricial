@@ -22,7 +22,7 @@ namespace seguros.data.repositorio
         public async Task<bool> DeleteEmpleados(int id)
         {
             var db = dbConnection();
-            var sql = "@delete from empleados where idEmpleados=@Id";
+            var sql = @"delete from empleados where idEmpleados=@Id";
             var result = await db.ExecuteAsync(sql, new { id });
             return result > 0;
         }
@@ -30,7 +30,7 @@ namespace seguros.data.repositorio
         public Task<IEnumerable<Empleados>> getEmpleados()
         {
             var db = dbConnection();
-            var consulta = @"select * from cliente ";
+            var consulta = @"select * from empleados ";
             return db.QueryAsync<Empleados>(consulta);
         }
 
@@ -53,8 +53,8 @@ namespace seguros.data.repositorio
         public async Task<bool> UpdateEmpleados(Empleados empleados)
         {
             var db = dbConnection();
-            var sql = @"update cliente set Nombre =@Nombre,Rol =@Rol,Documento= @Documento  where idEmpleados=@Id ";
-            var result = await db.ExecuteAsync(sql, new { empleados.id, empleados.Nombre, empleados.Rol, empleados.Documento });
+            var sql = @"update empleados set Nombre =@Nombre,Rol =@Rol,Documento= @Documento  where idEmpleados=@Id ";
+            var result = await db.ExecuteAsync(sql, new {empleados.Nombre, empleados.Rol, empleados.Documento , empleados.id });
             return result > 0;
         }
 

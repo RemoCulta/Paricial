@@ -23,7 +23,7 @@ namespace seguros.data.repositorio
         public async Task<bool> DeleteCliente(int id)
         {
             var db = dbConnection();
-            var sql = "@delete from cliente where idCliente=@Id";
+            var sql = @"delete from cliente where idCliente=@Id";
             var result = await db.ExecuteAsync(sql, new { id });
             return result > 0;
         }

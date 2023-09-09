@@ -11,9 +11,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var connection = new mysql(builder.Configuration.GetConnectionString("mysql"));
+var connection = new mysql(builder.Configuration.GetConnectionString("mysqlConnection"));
 builder.Services.AddSingleton(connection);
 builder.Services.AddScoped<iClienteRepository, clienteRepository>();
+builder.Services.AddScoped<iEmpleadosRepository, empleadosRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

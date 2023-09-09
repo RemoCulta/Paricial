@@ -15,6 +15,7 @@ var connection = new mysql(builder.Configuration.GetConnectionString("mysqlConne
 builder.Services.AddSingleton(connection);
 builder.Services.AddScoped<iClienteRepository, clienteRepository>();
 builder.Services.AddScoped<iEmpleadosRepository, empleadosRepository>();
+builder.Services.AddScoped<iVentasRepository, ventasRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

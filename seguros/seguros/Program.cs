@@ -1,5 +1,7 @@
 using data;
+using data.repositorio;
 using Microsoft.Extensions.DependencyInjection;
+using seguros.data.repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var connection = new mysql(builder.Configuration.GetConnectionString("mysql"))
+var connection = new mysql(builder.Configuration.GetConnectionString("mysql"));
+builder.Services.AddSingleton(connection);
+builder.Services.AddScoped<iClienteRepository, clienteRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
